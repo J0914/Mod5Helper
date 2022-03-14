@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+input {
+  height: fit-content;
+  margin: 5px;
+  padding: 2px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+label {
+  color: black;
+}
+
+.inputHolder {
+  display: flex;
+  align-items: baseline;
+}
+
+.err {
+  color: red;
+}
+
+
+

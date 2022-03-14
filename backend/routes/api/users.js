@@ -10,7 +10,6 @@ const router = express.Router();
 const validateSignup = [
   check('email')
     .exists({ checkFalsy: true })
-    .isEmail()
     .withMessage('Please provide a valid email.'),
   check('password')
     .exists({ checkFalsy: true })
@@ -24,8 +23,8 @@ router.post(
   '/',
   validateSignup,
   asyncHandler(async (req, res) => {
-    const { email, password, username } = req.body;
-    const user = await User.signup({ email, username, password });
+    const { email, password } = req.body;
+    const user = await User.signup({ email, password });
 
     await setTokenCookie(res, user);
 
