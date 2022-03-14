@@ -9,24 +9,28 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       userId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
       },
-      attended: {
-        type: Sequelize.TEXT
+      attending: {
+        type: Sequelize.TEXT,
+        allowNull: true,
       },
       notes: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
+        allowNull: true,
       },
       date: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.fn('now')
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.fn('now')
       }
     });
   },

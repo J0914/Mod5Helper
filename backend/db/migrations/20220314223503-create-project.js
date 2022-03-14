@@ -9,36 +9,48 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       modId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
       },
       weekId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
       },
       dayId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
       },
       title: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(100),
+        allowNull: false,
+        unique: true
       },
       starter: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
+        validate: {isUrl: true},
+        allowNull: true
       },
       curriculum: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
+        validate: {isUrl: true},
+        allowNull: true
       },
       solution: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
+        validate: {isUrl: true},
+        allowNull: true
       },
       notes: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
+        allowNull: true,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.fn('now')
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.fn('now')
       }
     });
   },

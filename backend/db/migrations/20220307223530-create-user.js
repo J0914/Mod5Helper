@@ -8,10 +8,27 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      modId: {
+        type: Sequelize.INTEGER,
+        allowNull:false,
+      },
       email: {
         type: Sequelize.STRING(256),
         allowNull: false,
         unique: true
+      },
+      fname: {
+        type: Sequelize.STRING(30),
+        allowNull: false,
+      },
+      lname: {
+        type: Sequelize.STRING(50),
+        allowNull: false,
+      },
+      photo: {
+        type: Sequelize.TEXT,
+        allowNull: true,
+        validate: {isUrl: true}
       },
       hashedPassword: {
         type: Sequelize.STRING.BINARY,

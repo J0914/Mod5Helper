@@ -9,13 +9,16 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       projectId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
       },
       title: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(30)
       },
       url: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
+        validate: {isUrl: true},
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
