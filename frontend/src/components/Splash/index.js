@@ -1,8 +1,12 @@
 
+import styles from './splash.module.css'
 
 const Splash = () => {
   return (
-    <h2>Splash Page</h2>
+    <div className={styles.splashContainer}>
+      <h1>Welcome to ModHelper.</h1>
+      <h2>Please login or signup to continue.</h2>
+    </div>
   )
 }
 

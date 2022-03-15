@@ -42,6 +42,7 @@ import styles from './loginform.module.css';
 
   const onSubmit = (e) => {
     e.preventDefault();
+    setErrors([])
 
     dispatch(login({credential, password}))
     .then(() => history.push('/dashboard'))
@@ -54,15 +55,17 @@ import styles from './loginform.module.css';
   return(
     <div className={styles.formContainer}>
       <form onSubmit={onSubmit} id={styles.loginForm}>
+        <h1 className={styles.loginFormHeader}>Login</h1>
         <ul>
           {errors.map(err => (
-            <li key={err}>{err}</li>
+            <li className={styles.backendErr} key={err}>{err}</li>
           ))}
         </ul>
         <label htmlFor='credential'>Email:</label>
         <div className={styles.inputHolder}>
         <input 
         id='credential'
+        className={styles.input}
         type='text'
         style={{border:`2px solid ${credentialBorder}`}}
         value={credential}
@@ -81,6 +84,7 @@ import styles from './loginform.module.css';
         <div className={styles.inputHolder}>
         <input 
         id='password'
+        className={styles.input}
         type='password'
         style={{border:`2px solid ${passwordBorder}`}}
         value={password}
@@ -97,6 +101,7 @@ import styles from './loginform.module.css';
         </div>
         <button
         type='submit'
+        className={styles.submitBtn}
         >
           Login
         </button>

@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import {Route, Switch} from 'react-router-dom';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import Splash from './components/Splash'
 import Navigation from './components/Navigation'
 import Auth from './components/Auth'
@@ -12,22 +12,36 @@ import {restoreUser} from './store/session';
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  const [auth, setAuth] = useState(null)
+  const user = useSelector(state => state.session.user)
+  const [auth, setAuth] = useState('login')
 
   useEffect(() => {
     dispatch(restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
-  return isLoaded && (
+  if (!user) return(
     <>
-    <Navigation setAuth={setAuth} />
-    <Switch>
+      <Navigation setAuth={setAuth} />
+      <Switch>
       <Route exact path='/'>
         <Splash />
       </Route>
       <Route path='/auth'>
         <Auth auth={auth} />
       </Route>
+      <Route path='*'>
+        <div className='fourohfourContainer'>
+        <h1 className='fourohfour'>Either this page doesn't exist, or you're not logged in. :)</h1>
+        </div>
+      </Route>
+      </Switch>
+    </>
+  )
+
+  return isLoaded && (
+    <>
+    <Navigation />
+    <Switch>
       <Route path='/dashboard'>
         <Dashboard />
       </Route>

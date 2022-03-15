@@ -62,16 +62,17 @@ import styles from './signupform.module.css';
 
   return(
     <div className={styles.formContainer}>
-      <form onSubmit={onSubmit} id={styles.loginForm}>
+      <form onSubmit={onSubmit} id={styles.signupForm}>
+      <h1 className={styles.signupFormHeader}>Signup</h1>
         <div className={styles.errors}>
           <ul>
             {errors.map(err => (
-              <li key={err}>{err}</li>
+              <li className={styles.backendErr} key={err}>{err}</li>
             ))}
           </ul>
         </div>
-        <div className={styles.inputHolder}>
           <label htmlFor='credential'>Email</label>
+        <div className={styles.inputHolder}>
           <input 
           style={{border:`2px solid ${credentialBorder}`}}
           
@@ -82,8 +83,8 @@ import styles from './signupform.module.css';
           placeholder='Enter Email'
           />
         </div>
-        <div className={styles.inputHolder}>
           <label htmlFor='password'>Password</label>
+        <div className={styles.inputHolder}>
           <input 
           style={{border:`2px solid ${passwordBorder}`}}
           id='password'
@@ -93,8 +94,8 @@ import styles from './signupform.module.css';
           placeholder='Enter Password'
           />
         </div>
-        <div className={styles.inputHolder}>
           <label htmlFor='confirmPassword'>Confirm Password</label>
+        <div className={styles.inputHolder}>
           <input 
           style={{border:`2px solid ${passwordBorder}`}}
           id='confirmPassword'
@@ -106,8 +107,9 @@ import styles from './signupform.module.css';
         </div>
         <button
         type='submit'
+        className={styles.submitBtn}
         >
-          Login
+          Submit
         </button>
       </form>
     </div>
