@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
   Meeting.associate = function(models) {
-    // associations can be defined here
+    Meeting.belongsTo(models.User, {foreignKey: 'userId'})
   };
   return Meeting;
 };

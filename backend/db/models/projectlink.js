@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
   ProjectLink.associate = function(models) {
-    // associations can be defined here
+    ProjectLink.belongsTo(models.Project, {foreignKey: 'projectId'})
   };
   return ProjectLink;
 };

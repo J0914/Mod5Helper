@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
   ProjectWalkthru.associate = function(models) {
-    // associations can be defined here
+    ProjectWalkthru.belongsTo(models.Project, {foreignKey: 'projectId'})
   };
   return ProjectWalkthru;
 };
