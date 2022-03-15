@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
   DayLink.associate = function(models) {
-    // associations can be defined here
+    DayLink.belongsTo(models.Day, {foreignKey: 'dayId'})
   };
   return DayLink;
 };

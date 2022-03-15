@@ -42,7 +42,11 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
   Project.associate = function(models) {
-    // associations can be defined here
+    Project.belongsTo(models.Mod, {foreignKey: 'modId'})
+    Project.belongsTo(models.Week, {foreignKey: 'weekId'})
+    Project.belongsTo(models.Day, {foreignKey: 'dayId'})
+    Project.hasMany(models.ProjectLink, {foreignKey: 'projectId'})
+    Project.hasOne(models.ProjectWalkthru, {foreignKey: 'projectId'})
   };
   return Project;
 };
