@@ -5,7 +5,11 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Users', [
       {
+        modId: 5,
         email: 'demo@user.io',
+        fname: 'Peterson',
+        lname: 'Hai',
+        photo: 'https://cdn-icons-png.flaticon.com/512/5229/5229470.png',
         hashedPassword: bcrypt.hashSync('password')
       },
     ], {});
