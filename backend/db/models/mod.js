@@ -5,9 +5,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       unique: true,
       allowNull: false,
-      // validate: {
-      //   len: [2,30]
-      // }
+      validate: {
+        len: [2,30]
+      }
     },
   }, {});
   Mod.associate = function(models) {
