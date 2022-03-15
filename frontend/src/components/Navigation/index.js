@@ -27,7 +27,7 @@ const Navigation = ({setAuth}) => {
                     <ion-icon name="help-buoy-outline"></ion-icon>
                 </span>
                 <div className={styles.header}>
-                <p>&nbsp;ModHelper</p>
+                <p className={styles.text}>&nbsp;ModHelper</p>
                 </div>
             </div>
             <div className={styles.btn}>
@@ -36,30 +36,6 @@ const Navigation = ({setAuth}) => {
                 </span>
             </div>
             <ul>
-                <li>
-                    <span onClick={() => {
-                        if (isActive === false) {
-                            setIsActive(true);
-                        }
-                    }} className={styles.searchIcon}>
-                        <ion-icon name="search-outline"></ion-icon>
-                    </span>
-                    <input onClick={() => {
-                        if (isActive === false) {
-                            setIsActive(true);
-                        }
-                    }} type='search' placeholder='Search...'></input>
-                    <span className={styles.tooltip}>Search</span>
-                </li>
-                <li className={styles.listItem}>
-                    <NavLink onClick={() => setIsActive(false)} className={styles.NavLink} to='/dashboard'>
-                        <span className={styles.icon}>
-                            <ion-icon alt='go home' name="home-outline"></ion-icon>
-                        </span>
-                        <div className={styles.text}>Dashboard</div>
-                    </NavLink>
-                    <span className={styles.tooltip}>Dashboard</span>
-                </li>
                 {!user && 
                 <>
                 <li className={styles.listItem}>
@@ -91,6 +67,30 @@ const Navigation = ({setAuth}) => {
                 }
                 {user && 
                 <>
+                <li>
+                    <span onClick={() => {
+                        if (isActive === false) {
+                            setIsActive(true);
+                        }
+                    }} className={styles.searchIcon}>
+                        <ion-icon name="search-outline"></ion-icon>
+                    </span>
+                    <input onClick={() => {
+                        if (isActive === false) {
+                            setIsActive(true);
+                        }
+                    }} type='search' placeholder='Search...'></input>
+                    <span className={styles.tooltip}>Search</span>
+                </li>
+                <li className={styles.listItem}>
+                    <NavLink onClick={() => setIsActive(false)} className={styles.NavLink} to='/dashboard'>
+                        <span className={styles.icon}>
+                            <ion-icon alt='go home' name="home-outline"></ion-icon>
+                        </span>
+                        <div className={styles.text}>Dashboard</div>
+                    </NavLink>
+                    <span className={styles.tooltip}>Dashboard</span>
+                </li>
                 <li className={styles.listItem}>
                     <NavLink onClick={() => setIsActive(false)} className={styles.NavLink} to='/mods'>
                         <span className={styles.icon}>

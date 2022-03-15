@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: white;
 }
 
 .header{
@@ -51,6 +50,11 @@ ion-icon {
   font-size: 1.5rem;
   margin-top: 10px;
   pointer-events: none;
+  color: white;
+}
+
+.text {
+  color: white;
 }
 
 .hamburger {
