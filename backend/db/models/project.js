@@ -40,13 +40,19 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       allowNull: true,
     },
-  }, {});
+  }, {
+    defaultScope: {
+      attributes: {
+        exclude: ['createdAt', 'updatedAt'],
+      },
+    },
+  });
   Project.associate = function(models) {
     Project.belongsTo(models.Mod, {foreignKey: 'modId'})
     Project.belongsTo(models.Week, {foreignKey: 'weekId'})
     Project.belongsTo(models.Day, {foreignKey: 'dayId'})
-    Project.hasMany(models.ProjectLink, {foreignKey: 'projectId'})
-    Project.hasOne(models.ProjectWalkthru, {foreignKey: 'projectId'})
+    Project.hasMany(models.ProjectLink, {foreignKey: 'projectId', onDelete: 'cascade', hooks: true})
+    Project.hasMany(models.ProjectWalkthru, {foreignKey: 'projectId', onDelete: 'cascade', hooks: true})
   };
   return Project;
 };
