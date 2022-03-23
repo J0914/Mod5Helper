@@ -13,11 +13,17 @@ module.exports = (sequelize, DataTypes) => {
         len: [2,30]
       }
     },
-  }, {});
+  }, {
+    defaultScope: {
+      attributes: {
+        exclude: ['createdAt', 'updatedAt']
+      }
+    },
+  });
   Week.associate = function(models) {
     Week.belongsTo(models.Mod, {foreignKey: 'modId'})
-    Week.hasMany(models.Day, {foreignKey: 'weekId'})
-    Week.hasMany(models.Project, {foreignKey: 'weekId'})
+    Week.hasMany(models.Day, {foreignKey: 'weekId', onDelete: 'cascade', hooks: true})
+    Week.hasMany(models.Project, {foreignKey: 'weekId', onDelete: 'cascade', hooks: true})
   };
   return Week;
 };

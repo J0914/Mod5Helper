@@ -13,7 +13,13 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
-  }, {});
+  }, {
+    defaultScope: {
+      attributes: {
+        exclude: ['createdAt', 'updatedAt'],
+      },
+    },
+  });
   ProjectWalkthru.associate = function(models) {
     ProjectWalkthru.belongsTo(models.Project, {foreignKey: 'projectId'})
   };

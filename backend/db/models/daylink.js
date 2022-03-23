@@ -15,7 +15,13 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {isUrl: true}
     },
-  }, {});
+  }, {
+    defaultScope: {
+      attributes: {
+        exclude: ['createdAt', 'updatedAt'],
+      },
+    },
+  });
   DayLink.associate = function(models) {
     DayLink.belongsTo(models.Day, {foreignKey: 'dayId'})
   };

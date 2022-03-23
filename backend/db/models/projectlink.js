@@ -16,7 +16,13 @@ module.exports = (sequelize, DataTypes) => {
       validate: {isUrl: true},
       allowNull: false
     },
-  }, {});
+  }, {
+    defaultScope: {
+      attributes: {
+        exclude: ['createdAt', 'updatedAt'],
+      },
+    },
+  });
   ProjectLink.associate = function(models) {
     ProjectLink.belongsTo(models.Project, {foreignKey: 'projectId'})
   };
