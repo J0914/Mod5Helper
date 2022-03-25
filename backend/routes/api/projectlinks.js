@@ -87,17 +87,16 @@ router.patch(
 );
 
 
-////////////////START HERE///////////NOT WORKING//////////
 // delete a projectlink - return project with all current projectlinks *
-// router.delete(
-//   '/:linkId',
-//   asyncHandler(async (req, res) => {
-//     const {linkId} = req.params
-//     const projectlink = await ProjectLink.findByPk(linkId)
-//     await projectlink.destroy();
+router.delete(
+  '/:linkId',
+  asyncHandler(async (req, res) => {
+    const {linkId} = req.params
+    const projectlink = await ProjectLink.findByPk(linkId)
+    await projectlink.destroy();
 
-//     res.redirect(`/api/projects/${projectlink.projectId}`)
-//   })
-// );
+    res.redirect(`/api/projects/${projectlink.projectId}`)
+  })
+);
 
 module.exports = router;

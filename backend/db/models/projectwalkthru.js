@@ -5,8 +5,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    lecturer: {
-      type: DataTypes.STRING,
+    userId: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     duration: {
@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
   });
   ProjectWalkthru.associate = function(models) {
     ProjectWalkthru.belongsTo(models.Project, {foreignKey: 'projectId'})
+    ProjectWalkthru.belongsTo(models.User, {foreignKey: 'userId'})
   };
   return ProjectWalkthru;
 };

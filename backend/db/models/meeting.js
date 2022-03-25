@@ -17,7 +17,13 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       allowNull: false,
     },
-  }, {});
+  }, {
+    defaultScope: {
+      attributes: {
+        exclude: ['createdAt', 'updatedAt'],
+      },
+    },
+  });
   Meeting.associate = function(models) {
     Meeting.belongsTo(models.User, {foreignKey: 'userId'})
   };
