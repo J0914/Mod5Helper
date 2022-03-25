@@ -5,7 +5,7 @@ module.exports = {
       return queryInterface.bulkInsert('ProjectWalkthrus', [
         {
         projectId: 1,
-        lecturer: 'Peterson Hai',
+        userId: 1,
         duration: 30,
         }
     ], {});
