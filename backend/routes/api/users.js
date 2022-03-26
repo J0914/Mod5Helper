@@ -18,13 +18,27 @@ const validateSignup = [
   handleValidationErrors
 ];
 
+router.get(
+  '/:modId',
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const { modId } = req.params;
+    const users = await User.findAll({
+      where: {
+        modId: modId 
+      }
+    });
+    res.json({users})
+  }
+));
+
 // Sign up
 router.post(
   '/',
   validateSignup,
   asyncHandler(async (req, res) => {
-    const { email, password } = req.body;
-    const user = await User.signup({ email, password });
+    console.log('in the backend', req.body)
+    const user = await User.signup(req.body);
 
     await setTokenCookie(res, user);
 

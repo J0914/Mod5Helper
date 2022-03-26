@@ -1,22 +1,33 @@
 import {useEffect, useState} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {signup} from '../../store/session'
 import {useHistory} from 'react-router-dom'
 import styles from './signupform.module.css';
 
  const SignupForm = () => {
-   const [credential, setCredential] = useState('');
-   const [password, setPassword] = useState('');
-   const [confirmPassword, setConfirmPassword] = useState('');
-   const [errors, setErrors] = useState([]);
-   const [credentialBorder, setCredentialBorder] = useState('black')
-   const [passwordBorder, setPasswordBorder] = useState('black')
-   const [emailErr, setEmailErr] = useState([]);
-   const [passwordErr, setPasswordErr] = useState([]);
-   const [confirmPasswordErr, setConfirmPasswordErr] = useState([]);
-   const [run, setRun] = useState(false);
-   const dispatch = useDispatch();
-   const history = useHistory();
+  const [credential, setCredential] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [errors, setErrors] = useState([]);
+  const [credentialBorder, setCredentialBorder] = useState('black')
+  const [passwordBorder, setPasswordBorder] = useState('black')
+  const [fname, setFname] = useState('');
+  const [lname, setLname] = useState('');
+  const [photo, setPhoto] = useState('');
+  const [modId, setModId] = useState(1);
+
+  const mods = Object.values(useSelector(state => state.mods.allMods));
+
+  const [emailErr, setEmailErr] = useState([]);
+  const [passwordErr, setPasswordErr] = useState([]);
+  const [confirmPasswordErr, setConfirmPasswordErr] = useState([]);
+  const [run, setRun] = useState(false);
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  useEffect(() => {
+    if(mods) setModId(5);
+  }, [mods])
 
   useEffect(() => {
     setEmailErr([])
@@ -51,8 +62,17 @@ import styles from './signupform.module.css';
     e.preventDefault();
 
     setErrors([])
+    const user = {
+      email: credential, 
+      password, 
+      fname, 
+      lname, 
+      modId
+    }
 
-    await dispatch(signup({email: credential, password}))
+    console.log(user)
+
+    await dispatch(signup(user))
     .then(() => history.push('/dashboard'))
     .catch(async(res) => {
       const data = await res.json();
@@ -104,6 +124,44 @@ import styles from './signupform.module.css';
           onChange={(e) => setConfirmPassword(e.target.value)}
           placeholder='Re-enter Password'
           />
+        </div>
+        <label htmlFor='fname'>First Name</label>
+        <div className={styles.inputHolder}>
+          <input 
+          style={{border:`2px solid ${passwordBorder}`}}
+          id='fname'
+          type='text'
+          value={fname}
+          onChange={(e) => setFname(e.target.value)}
+          placeholder='Enter First Name'
+          />
+        </div>
+        <label htmlFor='lname'>Last Name</label>
+        <div className={styles.inputHolder}>
+          <input 
+          style={{border:`2px solid ${passwordBorder}`}}
+          id='lname'
+          type='text'
+          value={lname}
+          onChange={(e) => setLname(e.target.value)}
+          placeholder='Enter Last Name'
+          />
+        </div>
+        <label htmlFor='modId'>Choose your mod</label>
+        <div className={styles.inputHolder}>
+          <select
+          id='modId'
+          value={modId}
+          onChange={(e) => setModId(e.target.value)}
+          >
+            {mods && mods.map(mod => (
+              <option 
+              key={mod.id} 
+              value={mod.id}
+              >{mod.title}
+              </option>
+            ))}
+          </select>
         </div>
         <button
         type='submit'

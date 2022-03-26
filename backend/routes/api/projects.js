@@ -52,14 +52,9 @@ router.get(
   '/:projectId',
   asyncHandler(async (req, res) => {
     const {projectId} = req.params
-    const project = await Project.findByPk(projectId, {
-      include: [{ model: ProjectLink }, { model: ProjectWalkthru }],
-      order: sequelize.col('id')
-    })
+    const project = await Project.findByPk(projectId)
 
-    return res.json({
-      project
-    });
+    res.redirect(303, `/api/days/${project.dayId}`)
   })
 );
 
@@ -83,7 +78,7 @@ router.patch(
     const project = await Project.findByPk(projectId)
     await project.update(req.body)
 
-    res.redirect(`${req.baseUrl}/${projectId}`)
+    res.redirect(303, `/api/days/${project.dayId}`)
   })
 );
 

@@ -1,9 +1,15 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import sessionReducer from "./session";
+import modReducer from "./mod";
+import weekReducer from "./week";
+import dayReducer from "./day";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
+  mods: modReducer,
+  weeks: weekReducer,
+  days: dayReducer,
 });
 
 let enhancer;
