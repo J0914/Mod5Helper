@@ -2,7 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-const { Day, Project, DayLink, sequelize } = require('../../db/models');
+const { Day, Project, DayLink, ProjectLink, ProjectWalkthru, sequelize } = require('../../db/models');
 
 const router = express.Router();
 
@@ -19,7 +19,12 @@ router.get(
   asyncHandler(async (req, res) => {
     const {dayId} = req.params
     const day = await Day.findByPk(dayId, {
-      include: [{ model: Project }, { model: DayLink }],
+      include: [
+        { 
+          model: Project,
+          include: [{ model: ProjectLink }, { model: ProjectWalkthru }]
+        }, 
+        { model: DayLink }],
       order: sequelize.col('id')
     })
 

@@ -1,0 +1,22 @@
+.dayContainer {
+  position: relative;
+}
+
+.dayH2 {
+  width: 100%;
+  text-align: center;
+}
+
+.projectCardsContainer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.projectContainer {
+  display: flex;
+  justify-content: space-evenly;
+  min-width: 40%;
+  max-width: 40%;
+}

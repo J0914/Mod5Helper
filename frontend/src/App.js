@@ -1,11 +1,12 @@
 import {useState, useEffect} from 'react';
-import {Route, Switch} from 'react-router-dom';
+import {Route, Switch, useHistory} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import Splash from './components/Splash'
 import Navigation from './components/Navigation'
 import Auth from './components/Auth'
 import Dashboard from './components/Dashboard'
 import {restoreUser} from './store/session';
+import {loadAllMods} from './store/mod';
 
 
 
@@ -14,9 +15,10 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const user = useSelector(state => state.session.user)
   const [auth, setAuth] = useState('login')
+  const history = useHistory();
 
   useEffect(() => {
-    dispatch(restoreUser()).then(() => setIsLoaded(true));
+    dispatch(restoreUser()).then(() => dispatch(loadAllMods())).then(() => setIsLoaded(true));
   }, [dispatch]);
 
   if (!user) return(
@@ -38,10 +40,13 @@ function App() {
     </>
   )
 
-  return isLoaded && (
+  else return isLoaded && (
     <>
     <Navigation />
     <Switch>
+      <Route exact path='/'>
+        <Splash />  
+      </Route>
       <Route path='/dashboard'>
         <Dashboard />
       </Route>
