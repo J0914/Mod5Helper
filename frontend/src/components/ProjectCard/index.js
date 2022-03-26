@@ -53,11 +53,7 @@ const ProjectCard = ({project}) => {
             <ProjectNotes project={project} />
         </div>
         <ProjectLinks dayId={project.dayId} projectId={project.id} links={project.ProjectLinks} />
-        {project.ProjectWalkthrus.length > 0 ? 
-        <ProjectWalkthru walkthrus={project.ProjectWalkthrus} />
-        :
-        <h3>No Walkthrus</h3>
-      }
+        <ProjectWalkthru projectId={project.id} walkthrus={project.ProjectWalkthrus} />
       </div>
     </div>   
   )

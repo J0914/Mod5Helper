@@ -58,7 +58,7 @@ router.post(
 
     const projectwalkthru = await ProjectWalkthru.create(req.body)
 
-    res.redirect(`/api/projects/${projectwalkthru.projectId}`)
+    res.redirect(303, `/api/projects/${projectwalkthru.projectId}`)
   })
 );
 
@@ -71,7 +71,7 @@ router.patch(
     const walkthru = await ProjectWalkthru.findByPk(walkthruId)
     await walkthru.update(req.body)
 
-    res.redirect(`/api/projects/${walkthru.projectId}`)
+    res.redirect(303, `/api/projects/${walkthru.projectId}`)
   })
 );
 
@@ -82,7 +82,7 @@ router.delete(
     const walkthru = await ProjectWalkthru.findByPk(walkthruId)
     await walkthru.destroy();
 
-    res.redirect(`/api/projects/${walkthru.projectId}`)
+    res.redirect(303, `/api/projects/${walkthru.projectId}`)
   })
 );
 
