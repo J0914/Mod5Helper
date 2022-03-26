@@ -23,8 +23,6 @@ const WeekView = ({week}) => {
     }
   }, [currentWeek])
   
-  console.log(currentDay)
-  
 
   return (
     <div>

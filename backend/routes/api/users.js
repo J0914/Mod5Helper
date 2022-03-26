@@ -18,6 +18,20 @@ const validateSignup = [
   handleValidationErrors
 ];
 
+router.get(
+  '/:modId',
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const { modId } = req.params;
+    const users = await User.findAll({
+      where: {
+        modId: modId 
+      }
+    });
+    res.json({users})
+  }
+));
+
 // Sign up
 router.post(
   '/',

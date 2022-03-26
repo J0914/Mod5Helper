@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import {useSelector} from 'react-redux';
 import {loadCurrentMod} from '../../store/mod';
+import {getAllModUsers} from '../../store/session';
 import {useDispatch} from 'react-redux';
 import {NavLink, Route} from 'react-router-dom'
 import WeekView from '../WeekView';
@@ -14,7 +15,10 @@ const Dashboard = () => {
   const [currentWeek, setCurrentWeek] = useState({})
 
   useEffect(() => {
-    if (user) dispatch(loadCurrentMod(user.modId));
+    if (user) {
+      dispatch(loadCurrentMod(user.modId))
+      .then(() => dispatch(getAllModUsers(user.modId)));
+    }
   }, [user, dispatch])
 
   useEffect(() => {

@@ -1,27 +1,26 @@
 import {useState} from 'react';
+import {useDispatch} from 'react-redux';
+import {updateDayProject} from '../../store/day';
 
 import styles from './editlinkform.module.css'
 
-const EditLinkForm = ({link, column}) => {
-  const [value, setValue] = useState(link);
+const EditLinkForm = ({setter, item, link, column}) => {
+  const dispatch = useDispatch();
+  const [value, setValue] = useState(link || '');
 
-  const onSubmit = (e) => {
+  const onSubmit = async(e) => {
     e.preventDefault();
-    const Project = {};
-    Project[column] = value;
-    console.log(Project);
+    const editItem = {};
+    editItem[column] = value;
+    await dispatch(updateDayProject(item.id, editItem))
+    .then(() => setter(false));
   }
 
-  console.log(value)
-
   return (
-    <form onSubmit={onSubmit}>
-      <div className="form-group">
-        <label htmlFor="link">Link</label>
-        <input type="text" className="form-control" id="link" placeholder={`Enter ${column} link`} value={value} onChange={(e) => setValue(e.target.value)} />
+      <div className={styles.inputContainer}>
+        <label htmlFor="link">{column}</label>
+        <input type="text" className={styles.editInput} id="link" placeholder={`Enter ${column} link`} value={value} onChange={(e) => setValue(e.target.value)} onBlur={onSubmit} />
       </div>
-      <button type="submit" className="btn btn-primary">Submit</button>
-    </form>
   )
 }
 

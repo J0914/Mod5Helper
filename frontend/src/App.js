@@ -5,7 +5,7 @@ import Splash from './components/Splash'
 import Navigation from './components/Navigation'
 import Auth from './components/Auth'
 import Dashboard from './components/Dashboard'
-import {restoreUser} from './store/session';
+import {restoreUser, getAllModUsers} from './store/session';
 import {loadAllMods} from './store/mod';
 
 
@@ -18,7 +18,9 @@ function App() {
   const history = useHistory();
 
   useEffect(() => {
-    dispatch(restoreUser()).then(() => dispatch(loadAllMods())).then(() => setIsLoaded(true));
+    dispatch(restoreUser())
+    .then(() => dispatch(loadAllMods()))
+    .then(() => setIsLoaded(true));
   }, [dispatch]);
 
   if (!user) return(

@@ -51,8 +51,8 @@ router.post(
     const exists = await checkIfExists({projectId: req.body.projectId}, req)
     
     if (!exists) {
-      const projectlink = await ProjectLink.create(req.body)
-      res.redirect(`/api/projects/${projectlink.projectId}`)
+      await ProjectLink.create(req.body)
+      res.redirect(303, `/api/days/${req.body.dayId}`)
     } else {
       const err = new Error('That url already exists on this project');
       err.status = 404;
@@ -75,7 +75,7 @@ router.patch(
 
     if (!exists) {
       await projectlink.update(req.body)
-      res.redirect(`/api/projects/${projectlink.projectId}`)
+      res.redirect(303, `/api/projects/${projectlink.projectId}`)
     } else {
       const err = new Error('That url already exists on this project');
       err.status = 404;
@@ -95,7 +95,7 @@ router.delete(
     const projectlink = await ProjectLink.findByPk(linkId)
     await projectlink.destroy();
 
-    res.redirect(`/api/projects/${projectlink.projectId}`)
+    res.redirect(303, `/api/projects/${projectlink.projectId}`)
   })
 );
 

@@ -1,6 +1,7 @@
+import {csrfFetch} from './csrf.js'
 const LOAD = 'day/LOAD';
 
-const loadDay = (day) => ({
+export const loadDay = (day) => ({
   type: LOAD,
   day
 })
@@ -8,6 +9,16 @@ const loadDay = (day) => ({
 export const loadCurrentDay = (dayId) => async (dispatch) => {
   const response = await fetch(`/api/days/${dayId}`);
   const data = await response.json();
+  dispatch(loadDay(data.day));
+}
+
+export const updateDayProject = (projectId, project) => async (dispatch) => {
+  const response = await csrfFetch(`/api/projects/${projectId}`, {
+    method: 'PATCH',
+    body: JSON.stringify(project)
+  });
+  const data = await response.json();
+  console.log(data)
   dispatch(loadDay(data.day));
 }
 
