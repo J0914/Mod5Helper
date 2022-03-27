@@ -18,8 +18,18 @@ const EditLinkForm = ({setter, item, link, column}) => {
 
   return (
       <div className={styles.inputContainer}>
-        <label htmlFor="link">{column.charAt(0).toUpperCase() + column.slice(1)}</label>
-        <input type="text" className={styles.editInput} id="link" placeholder={`Enter ${column} link`} value={value} onChange={(e) => setValue(e.target.value)} onBlur={onSubmit} />
+        <label 
+        htmlFor="link"
+        >{column.charAt(0).toUpperCase() + column.slice(1)}
+        </label>
+        <input 
+        type="text" 
+        className={styles.editInput} 
+        id="link" 
+        placeholder={`Enter ${column} link`} 
+        value={value} 
+        onChange={(e) => setValue(e.target.value)} 
+        onBlur={onSubmit} />
       </div>
   )
 }
