@@ -19,41 +19,45 @@ const ProjectCard = ({project}) => {
         <h2 className={styles.projectCardTitle}>{project.title}</h2>
       </div>
       <div className={styles.projectCardBody}>
-        <div className={styles.linkDiv}>
-          {!editStarter ? 
-            <h3>{project.starter ? <a target='blank' href={project.starter}>Starter Repo</a> 
-            : 'no starter link!'}
+        <div className={styles.linksContainer}>
+          <div className={styles.linkDiv}>
+            {!editStarter ? 
+              <h3>{project.starter ? <a target='blank' href={project.starter}>Starter Repo</a> 
+              : 'no starter link!'}
+              </h3>
+            : 
+              <EditLinkForm setter={setEditStarter} item={project} link={project.starter} column='starter' />
+            }
+            <button onClick={() => setEditStarter(!editStarter)} className={styles.projectCardBtn}>{editStarter ? 'Cancel' : 'Edit'}</button>
+          </div>
+          <div className={styles.linkDiv}>
+          {!editCurriculum ?
+            <h3>{project.curriculum ? <a target='blank' href={project.curriculum}>Curriculum Repo</a> 
+            : 'no curriculum link!'}
             </h3>
-          : 
-            <EditLinkForm setter={setEditStarter} item={project} link={project.starter} column='starter' />
+          :
+            <EditLinkForm setter={setEditCurriculum} item={project} link={project.curriculum} column='curriculum' />
           }
-          <button onClick={() => setEditStarter(!editStarter)} className={styles.editLinkButton}>{editStarter ? 'Cancel' : 'Edit'}</button>
+          <button onClick={() => setEditCurriculum(!editCurriculum)} className={styles.projectCardBtn}>{editCurriculum ? 'Cancel' : 'Edit'}</button>
+          </div>
+          <div className={styles.linkDiv}>
+          {!editSolution ?
+            <h3>{project.solution ? <a target='blank' href={project.solution}>Solution Repo</a>
+            : 'no solution link!'}
+            </h3>
+          :
+            <EditLinkForm setter={setEditSolution} item={project} link={project.solution} column='solution' />
+          }
+          <button onClick={() => setEditSolution(!editSolution)} className={styles.projectCardBtn}>{editSolution ? 'Cancel' : 'Edit'}</button>
+          </div>
         </div>
-        <div className={styles.linkDiv}>
-        {!editCurriculum ?
-          <h3>{project.curriculum ? <a target='blank' href={project.curriculum}>Curriculum Repo</a> 
-          : 'no curriculum link!'}
-          </h3>
-        :
-          <EditLinkForm setter={setEditCurriculum} item={project} link={project.curriculum} column='curriculum' />
-        }
-        <button onClick={() => setEditCurriculum(!editCurriculum)} className={styles.editLinkButton}>{editCurriculum ? 'Cancel' : 'Edit'}</button>
-        </div>
-        <div className={styles.linkDiv}>
-        {!editSolution ?
-          <h3>{project.solution ? <a target='blank' href={project.solution}>Solution Repo</a>
-          : 'no solution link!'}
-          </h3>
-        :
-          <EditLinkForm setter={setEditSolution} item={project} link={project.solution} column='solution' />
-        }
-        <button onClick={() => setEditSolution(!editSolution)} className={styles.editLinkButton}>{editSolution ? 'Cancel' : 'Edit'}</button>
-        </div>
-        <div className={styles.projectNotes}>
-            <ProjectNotes project={project} />
+        <div className={styles.walkthruAndNotesContainer}>
+          <ProjectWalkthru projectId={project.id} walkthrus={project.ProjectWalkthrus} />
+          <div className={styles.projectNotes}>
+              <ProjectNotes project={project} />
+          </div>
         </div>
         <ProjectLinks dayId={project.dayId} projectId={project.id} links={project.ProjectLinks} />
-        <ProjectWalkthru projectId={project.id} walkthrus={project.ProjectWalkthrus} />
       </div>
     </div>   
   )
