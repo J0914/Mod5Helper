@@ -17,8 +17,13 @@ const ProjectNotes = ({project}) => {
   }
 
   return (
-    <div className="project-notes">
-      <textarea type='text' value={notes} onChange={(e) => setNotes(e.target.value)} onBlur={onSubmit}/>
+    <div className={styles.notesContainer}>
+      <textarea 
+      className={styles.notes}
+      type='text' 
+      value={notes} 
+      onChange={(e) => setNotes(e.target.value)} 
+      onBlur={onSubmit}/>
     </div>
   )
 }

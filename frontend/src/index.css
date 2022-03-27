@@ -1,5 +1,12 @@
 /* TODO Add site wide styles */
-
+#root {
+  background-image: url('https://img.wallpapersafari.com/desktop/1536/864/63/84/LkSrqU.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
 .fourohfourContainer {
   height: 100vh;
   display: flex;

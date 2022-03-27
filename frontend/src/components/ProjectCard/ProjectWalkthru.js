@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {useSelector, useDispatch} from 'react-redux';
 import {createProjectWalkthru, deleteProjectWalkthru} from '../../store/projectwalkthru';
 
+import styles from './projectcard.module.css'
 
 const Projectwalkthru = ({projectId, walkthrus}) => {
   const dispatch = useDispatch();
@@ -22,25 +23,19 @@ const Projectwalkthru = ({projectId, walkthrus}) => {
   }
   
   return(
-    <div>
-      <h3>Eod Walkthrough:</h3>
-      <ul>
-        {walkthrus.map(walkthru => {
-          const user = users.find(user => user.id === walkthru.userId);
-          return (<li key={walkthru.id}>
-            <h4>{user.fname} {user.lname}</h4>
-            <h4>Duration: {walkthru.duration} min</h4>
-            <button 
-            onClick={() => dispatch(deleteProjectWalkthru(walkthru.id))}
-            >Delete
-            </button>
-          </li>)
-        })}
-      </ul>
-      <button onClick={() => setCreateWalkthru(!createWalkthru)}>{createWalkthru ? 'Cancel' : 'Create'}</button>
-        {createWalkthru && 
-          <form onSubmit={SubmitWalkthru}>
+    <div className={styles.walkthruContainer}>
+      <div>
+      <h3 className={styles.walkthruHeader}>Eod Walkthrough:</h3>
+      <button 
+      className={styles.projectCardBtn} 
+      onClick={() => setCreateWalkthru(!createWalkthru)}
+      >{createWalkthru ? 'Cancel' : 'Create New'}
+      </button>
+      </div>
+      {createWalkthru && 
+          <form className={styles.walkthruForm} onSubmit={SubmitWalkthru}>
             <select
+              className={styles.walkthruDropdown}
               name='userId'
               onChange={(e) => setUserId(e.target.value)}
               value={userId}
@@ -53,10 +48,39 @@ const Projectwalkthru = ({projectId, walkthrus}) => {
                 </option>
               ))}
             </select>
-            <input type='number' value={duration} onChange={(e) => setDuration(e.target.value)} />
-            <button type='submit'>Create</button>
+            <input 
+            className={styles.durationInput}
+            type='number' 
+            inputmode="numeric"
+            value={duration} 
+            onChange={(e) => setDuration(e.target.value)} 
+            />
+            <button 
+            className={styles.projectCardBtn}
+            type='submit'
+            >Create
+            </button>
           </form>
         }
+      <ul className={styles.walkthruUl}>
+        {walkthrus.map(walkthru => {
+          const user = users.find(user => user.id === walkthru.userId);
+          return (<li className={styles.walkthruLi} key={walkthru.id}>
+            <div className={styles.walkthruInfoContainer}>
+            <h4>{user.fname} {user.lname}</h4>
+            <h4>Duration: {walkthru.duration} min</h4>
+            </div>
+            <div className={styles.deleteBtnContainer}>
+            <button 
+            className={styles.projectCardBtn}
+            onClick={() => dispatch(deleteProjectWalkthru(walkthru.id))}
+            >Delete
+            </button>
+            </div>
+          </li>)
+        })}
+      </ul>
+        
     </div>
   )
 }
