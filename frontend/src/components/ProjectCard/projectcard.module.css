@@ -21,6 +21,7 @@
   padding: 12px 30px;
   display: flex;
   flex-wrap: wrap;
+  /* justify-content: center; */
   flex-direction: column;
   transition: transform .3s 0.1s;
   border-radius: 18px;
@@ -44,8 +45,9 @@
 
 .linksContainer {
   display: flex;
+  width: 100%;
   /* flex-direction: column; */
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   margin: 5px;
   padding: 5px;
@@ -54,8 +56,15 @@
 .linkDiv {
   display: flex;
   white-space: nowrap;
+  justify-content: center;
   /* margin: 3px; */
   padding: 3px;
+  min-width: 182px;
+  max-width: 182px;
+}
+
+.editLinkFormContainer {
+  /* max-width: 182px; */
 }
 
 .projectCardBtn {
@@ -103,6 +112,7 @@
   width: 45%;
   display: flex;
   justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 .walkthruAndNotesContainer {
@@ -133,8 +143,8 @@
 .walkthruLi {
   display: flex;
   white-space: nowrap;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  border-top: 1px solid rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   margin: 2px;
 }
 

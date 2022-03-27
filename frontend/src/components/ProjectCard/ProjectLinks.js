@@ -40,13 +40,19 @@ const ProjectLinks = ({dayId, projectId, links}) => {
       value={url} 
       onChange={(e) => setUrl(e.target.value)} 
       />
-      <button>Add</button>
+      <button
+      className={styles.projectCardBtn}
+      >Add</button>
       </form>
       <ul className={styles.linksUl}>
         {links.map(link => (
           <li key={link.id} className={styles.linkLi}>
             <a rel={link.title} href={link.url} target='blank'>{link.title.slice(0, 15)} {link.title.length > 15 ? '...' : ''}</a>
-            <button onClick={() => dispatch(deleteProjectLink(link.id))}>Delete</button>
+            <button 
+            className={styles.projectCardBtn}
+            onClick={() => dispatch(deleteProjectLink(link.id))}
+            >Delete
+            </button>
           </li>
         ))}
       </ul>    
