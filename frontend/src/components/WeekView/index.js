@@ -12,6 +12,8 @@ const WeekView = ({week}) => {
   const currentWeek = useSelector(state => state.weeks.currentWeek);
   const [currentDay, setCurrentDay] = useState({})
 
+  // console.log('week view week', week)
+
   useEffect(() => {
     if (week.id) dispatch(loadCurrentWeek(week.id));
   }, [dispatch, week])
@@ -29,12 +31,12 @@ const WeekView = ({week}) => {
       <div className={styles.daysContainer}>
         {currentWeek?.Days?.map(day => (
           <div key={day.id} className={styles.dayContainer}>
-            <NavLink to={`/dashboard/${currentWeek.id}/days/${day.id}`} onClick={() => setCurrentDay(day)} className={styles.weekH3}>{day.title}</NavLink>
+            <NavLink activeClassName={styles.active} to={`/dashboard/${currentWeek.id}/days/${day.id}`} onClick={() => setCurrentDay(day)} className={styles.dayLink}>{day.title}</NavLink>
           </div>
         ))}
       </div>
       <Route path='/dashboard/:weekId/days/:dayId' >
-        <DayView day={currentDay} />
+        <DayView modId={week.modId} day={currentDay} />
       </Route>
     </div>
   );

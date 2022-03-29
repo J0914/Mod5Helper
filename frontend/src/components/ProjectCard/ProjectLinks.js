@@ -18,7 +18,6 @@ const ProjectLinks = ({dayId, projectId, links}) => {
       url
     }
 
-    console.log(projectLink);
     await(dispatch(createProjectLink(projectLink)))
     .then(() => setTitle(''))
     .then(() => setUrl(''));
