@@ -18,7 +18,6 @@ export const updateDayProject = (projectId, project) => async (dispatch) => {
     body: JSON.stringify(project)
   });
   const data = await response.json();
-  console.log(data)
   dispatch(loadDay(data.day));
 }
 

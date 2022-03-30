@@ -70,8 +70,6 @@ import styles from './signupform.module.css';
       modId
     }
 
-    console.log(user)
-
     await dispatch(signup(user))
     .then(() => history.push('/dashboard'))
     .catch(async(res) => {

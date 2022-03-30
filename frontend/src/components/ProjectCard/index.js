@@ -11,8 +11,6 @@ const ProjectCard = ({project}) => {
   const [editCurriculum, setEditCurriculum] = useState(false);
   const [editSolution, setEditSolution] = useState(false);
 
-  console.log(project)
-
   return ( project &&
     <div className={styles.projectCard}>
       <div className={styles.projectCardHeader}>

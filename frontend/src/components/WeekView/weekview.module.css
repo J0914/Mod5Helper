@@ -3,4 +3,23 @@
   flex-direction: row;
   justify-content: space-evenly;
   margin: 10px 0px;
+  
+}
+
+.dayLink {
+  text-decoration: none;
+  font-size: 1.3rem;
+  padding: 7px;
+  
+}
+
+.dayLink.active {
+  font-weight: bold;
+  color: green;
+  border-left: 1px solid rgba(255,255,255, .7);
+  border-top: 1px solid rgba(255,255,255, .7);
+  border-right: 1px solid rgba(0,0,0, .7);
+  background:rgba(255,255,255 .1);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }

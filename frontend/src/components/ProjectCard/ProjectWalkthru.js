@@ -51,7 +51,7 @@ const Projectwalkthru = ({projectId, walkthrus}) => {
             <input 
             className={styles.durationInput}
             type='number' 
-            inputmode="numeric"
+            inputMode="numeric"
             value={duration} 
             onChange={(e) => setDuration(e.target.value)} 
             />

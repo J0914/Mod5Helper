@@ -33,15 +33,15 @@ const validateUpdateProject = [
     .isLength({min: 2, max: 30})
     .withMessage('Title must be between 2 and 30 characters.'),
   check('starter') // 
-    .optional({checkFalsy: true}) // doesn't have to be there, but if it is validate it
+    .optional() // doesn't have to be there, but if it is validate it
     .isURL()
     .withMessage('Please provide a valid url.'),
   check('curriculum')
-    .optional({checkFalsy: true})
+    .optional()
     .isURL()
     .withMessage('Please provide a valid url.'),
   check('solution')
-    .optional({checkFalsy: true})
+    .optional()
     .isURL()
     .withMessage('Please provide a valid url.'),
   handleValidationErrors

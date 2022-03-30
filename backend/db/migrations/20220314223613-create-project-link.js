@@ -13,7 +13,8 @@ module.exports = {
         allowNull: false,
       },
       title: {
-        type: Sequelize.STRING(30)
+        type: Sequelize.STRING(30),
+        allowNull: false
       },
       url: {
         type: Sequelize.TEXT,
